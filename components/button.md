@@ -1,13 +1,5 @@
 # GEMS Design System — Button Guidelines
 
-**Document:** `components/button.md`  
-**Version:** 1.0  
-**Component:** Button  
-**Platform:** GEMS Web Application  
-**Figma Reference:** [GEMS Button Component](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=294-4425)
-
----
-
 ## 1. Purpose
 
 Button merupakan komponen interaktif yang digunakan untuk menjalankan tindakan pengguna, seperti membuat, menyimpan, mengubah, menghapus, mengirim, membatalkan, mengonfirmasi, dan menghentikan proses.
