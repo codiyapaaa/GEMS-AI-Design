@@ -4,90 +4,118 @@
 
 Add New Data merupakan UX Pattern yang digunakan untuk membuat atau menambahkan data baru ke dalam sistem.
 
-GEMS menyediakan empat pattern penambahan data yang memiliki struktur dan alur interaksi berbeda. Pemilihan pattern MUST mempertimbangkan:
+GEMS menyediakan empat Add New Data UX Pattern resmi dengan struktur, alur interaksi, dan behavior yang berbeda.
 
-- Kompleksitas data dan formulir.
-- Kebutuhan halaman atau modal.
-- Pengelompokan informasi.
-- Kebutuhan pengisian bertahap.
-- Kebutuhan Save as Draft.
-- Kebutuhan Preview sebelum penyimpanan.
-- Alur bisnis dan hak akses berdasarkan HSD/BRD.
-- Flow Diagram resmi pada GEMS Design System.
+AI MUST menganalisis kebutuhan HSD/BRD, memilih pattern yang paling sesuai, menggunakan komponen resmi GEMS Design System, serta menghasilkan UX Flow Diagram dan UI Screens yang mencakup seluruh kondisi interaksi pengguna.
 
-### Core Principles
+### 1.1 Core Principles
 
 **1. Requirement-Based Selection**
 
-AI MUST memilih UX Pattern berdasarkan kebutuhan HSD/BRD, bukan preferensi visual.
+AI MUST memilih UX Pattern berdasarkan approved HSD/BRD, bukan preferensi visual.
 
 **2. Official Pattern Reuse**
 
-AI MUST menggunakan salah satu dari empat Add New Data UX Pattern resmi GEMS.
+AI MUST menggunakan salah satu dari empat Add New Data UX Pattern resmi GEMS sebagai acuan utama.
 
 **3. Flow Integrity**
 
-AI MUST mempertahankan struktur, urutan interaksi, decision point, dan navigasi sesuai pattern terpilih.
+AI MUST mempertahankan struktur, urutan interaksi, decision point, navigation, dan behavior pattern terpilih.
 
-**4. Design System Compliance**
+**4. GEMS Component Compliance**
 
-AI MUST menggunakan seluruh komponen GEMS yang diperlukan oleh pattern terpilih, termasuk variant dan state resmi yang relevan.
+AI MUST menggunakan komponen resmi GEMS Design System beserta properties, variants, states, dan visual specification yang tersedia.
 
 **5. Flow-Driven Design**
 
-AI MUST menghasilkan UX Flow Diagram dan UI Design yang saling sesuai.
+AI MUST menghasilkan UX Flow Diagram secara fisik di atas UI Screens dalam section Figma yang sama, mengikuti struktur UX Pattern GEMS.
 
-**6. Business Data Accuracy**
+**6. Complete State Management**
 
-AI MUST menggunakan data, field, status, dan aturan bisnis dari HSD/BRD yang diberikan.
+AI MUST menangani dan mendesain seluruh UI States yang relevan, termasuk Default, Focus, Filled, Validation Error, Disabled, Loading, Success, Save Error, Network Error, Server Error, Draft, dan Unsaved Changes.
 
-**7. Human Approval**
+**7. Business Data Accuracy**
 
-AI MUST meminta Human Approval sebelum melakukan perubahan terhadap pattern, flow, atau komponen resmi.
+AI MUST menggunakan field, status, role, validation, dan business rules dari approved HSD/BRD.
 
-**Core Principle:**
+**8. Human Approval**
 
-> UX Pattern menentukan struktur dan alur interaksi. HSD/BRD menentukan kebutuhan bisnis. GEMS Design System menentukan komponen. AI MUST menggunakan ketiganya secara konsisten tanpa mengubah aturan yang telah disetujui.
+AI MAY merekomendasikan perubahan UX Flow jika pattern resmi tidak memenuhi kebutuhan bisnis. AI MUST memperoleh explicit Human Approval sebelum menerapkan perubahan.
+
+### 1.2 Core Enforcement
+
+> UX Pattern menentukan struktur dan alur interaksi. HSD/BRD menentukan kebutuhan bisnis. GEMS Design System menentukan komponen. Human Approval menentukan apakah perubahan diperbolehkan.
+
+AI MUST NOT mengubah approved flow atau komponen resmi berdasarkan asumsi.
 
 ---
 
-## 2. Official UX Pattern Types
+## 2. Source of Truth & Pattern Selection
 
-### 2.1 Available Patterns
+### 2.1 Source of Truth
+
+| Source | Fungsi |
+|---|---|
+| Approved HSD/BRD | Kebutuhan bisnis, field, validation, status, dan proses |
+| GEMS Add New Data UX Pattern | Flow, screens, navigation, dan interaction |
+| GEMS Design System | Components, properties, variants, states, dan visual specification |
+| Role Access Matrix | Hak akses dan tindakan pengguna |
+| Human Approval | Persetujuan perubahan atau pengecualian |
+
+AI MUST memeriksa sumber resmi sebelum menghasilkan desain.
+
+AI MUST NOT mengarang field, role, validation, status, atau business rule.
+
+### 2.2 Available Patterns
 
 | Pattern | Type | Karakteristik |
 |---|---|---|
-| Pattern 01 | Modal / Popup | Penambahan data melalui form dalam modal |
-| Pattern 02 | New Page | Penambahan data melalui halaman khusus dengan Save as Draft |
-| Pattern 03 | Multi-step New Page | Penambahan data melalui beberapa tahapan |
-| Pattern 04 | Multi-step with Preview | Penambahan data bertahap dengan Preview dan Save as Draft |
+| Pattern 01 | Modal / Popup | Penambahan data melalui Modal |
+| Pattern 02 | New Page | Form halaman khusus dengan Save as Draft |
+| Pattern 03 | Multi-step New Page | Pengisian melalui beberapa tahapan |
+| Pattern 04 | Multi-step with Preview | Pengisian bertahap dengan Preview dan Save as Draft |
 
-### 2.2 UX Pattern Selection Matrix
+### 2.3 UX Pattern Selection Matrix
 
 | Kebutuhan | Recommended Pattern | Alasan |
 |---|---|---|
-| Form sederhana dengan input ringkas | Pattern 01 | Pengguna dapat mengisi data melalui modal |
-| Form membutuhkan halaman khusus dan draft | Pattern 02 | Pengguna memiliki ruang pengisian lebih luas dan dapat menyimpan draft |
-| Form memiliki beberapa kelompok informasi yang perlu diisi bertahap | Pattern 03 | Pengisian menggunakan navigasi antarstep |
-| Form bertahap membutuhkan pemeriksaan data sebelum penyimpanan | Pattern 04 | Pengguna dapat meninjau data melalui Preview |
+| Form sederhana dengan input ringkas | Pattern 01 | Pengisian dapat dilakukan melalui Modal |
+| Form membutuhkan halaman khusus dan Draft | Pattern 02 | Form memiliki area lebih luas dan mendukung penyimpanan sementara |
+| Form memiliki beberapa kelompok informasi | Pattern 03 | Pengisian menggunakan tahapan |
+| Form bertahap membutuhkan pemeriksaan sebelum Save | Pattern 04 | Pengguna dapat meninjau informasi melalui Preview |
 
-### AI Rules
+### 2.4 Pattern Selection Rules
 
-- AI MUST memeriksa kebutuhan data sebelum menentukan pattern.
-- AI MUST menggunakan pattern yang telah ditetapkan dalam approved design jika tersedia.
-- AI SHOULD merekomendasikan pattern berdasarkan kompleksitas dan alur pengisian data.
-- AI MUST mempertimbangkan seluruh behavior bawaan pattern, termasuk Draft dan Preview.
-- AI MUST NOT memilih pattern hanya berdasarkan jumlah field.
-- AI MUST NOT menggabungkan beberapa pattern menjadi satu.
-- AI MUST NOT membuat pattern baru tanpa Human Approval.
+AI MUST:
+
+1. Membaca approved HSD/BRD.
+2. Mengidentifikasi entry point penambahan data.
+3. Memeriksa keempat pattern resmi.
+4. Membandingkan kebutuhan dengan struktur dan behavior setiap pattern.
+5. Mempertimbangkan Modal, New Page, Multi-step, Draft, dan Preview.
+6. Memilih pattern yang paling sesuai.
+7. Mempertahankan pattern yang sudah ditetapkan dalam approved design.
+8. Menjelaskan alasan pemilihan.
+9. Melaporkan konflik untuk Human Review.
+10. Meminta Human Approval jika pattern perlu dimodifikasi.
+
+AI MUST NOT:
+
+- Memilih pattern hanya berdasarkan jumlah field.
+- Memilih pattern berdasarkan preferensi visual.
+- Menggabungkan pattern tanpa approval.
+- Membuat pattern baru secara mandiri.
+- Menambahkan Draft atau Preview ke pattern yang tidak mendukungnya.
 
 ---
 
 ## 3. Pattern 01 — Add Data via Modal
 
+**Figma Reference:** [Pattern 01 — Modal / Popup](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3305-14747&t=zv6vn5L7CsEWbtOz-1)
+
 ### 3.1 When to Use
 
-Pattern 01 digunakan untuk penambahan data yang dapat diselesaikan melalui form dalam modal tanpa berpindah ke halaman khusus.
+Pattern 01 digunakan ketika penambahan data dapat diselesaikan melalui form dalam Modal tanpa berpindah ke halaman khusus.
 
 | Kondisi | Penggunaan |
 |---|---|
@@ -98,9 +126,9 @@ Pattern 01 digunakan untuk penambahan data yang dapat diselesaikan melalui form 
 | Membutuhkan Save as Draft | Not Recommended |
 | Membutuhkan Preview Page | Not Recommended |
 
-### 3.2 Official Flow
+### 3.2 Official Main Flow
 
-AI MUST mengikuti urutan utama berikut:
+AI MUST mengikuti:
 
 1. Start.
 2. List / Data Table.
@@ -115,17 +143,52 @@ AI MUST mengikuti urutan utama berikut:
 
 ### 3.3 Cancel & Exit Flow
 
-Pattern 01 memiliki alur keluar dari form yang mempertimbangkan kondisi data yang telah diisi.
+AI MUST:
 
-**AI Rules:**
+1. Mengikuti tindakan Cancel atau Tutup Form.
+2. Memeriksa kondisi form kosong atau sudah terisi.
+3. Mengikuti decision point resmi.
+4. Menggunakan Exit Confirmation jika diwajibkan.
+5. Mempertahankan input ketika pengguna kembali ke form.
+6. Mengikuti navigasi resmi ketika pengguna mengonfirmasi keluar.
 
-- AI MUST mengikuti decision point form kosong atau sudah terisi sesuai flow resmi.
-- AI MUST menggunakan Confirmation Modal keluar jika ditentukan dalam pattern.
-- AI MUST mempertahankan input ketika pengguna memilih kembali ke form.
-- AI MUST mengikuti alur pembatalan dan penutupan sesuai referensi Figma.
-- AI MUST NOT menutup form berisi perubahan dengan behavior yang berbeda dari pattern.
+### 3.4 Required UI States
 
-### 3.4 Pattern Restrictions
+AI MUST menghasilkan representasi desain untuk:
+
+- Default — Form kosong.
+- Focus — Field sedang dipilih.
+- Filled — Field telah diisi.
+- Required — Field wajib diisi.
+- Validation Error — Input tidak valid.
+- Disabled — Tindakan belum tersedia.
+- Read-only — Field tidak dapat diubah jika berlaku.
+- Loading — Proses penyimpanan.
+- Confirmation — Konfirmasi penyimpanan.
+- Success — Data berhasil disimpan.
+- Save Error — Penyimpanan gagal.
+- Network Error — Gangguan koneksi.
+- Server Error — Kesalahan sistem.
+- Unsaved Changes — Keluar ketika form telah diisi.
+- Cancelled — Pengguna membatalkan tindakan.
+- Updated List — Daftar menampilkan data terbaru.
+
+State yang tidak berlaku MUST disertai alasan.
+
+### 3.5 Required Design Output
+
+AI MUST menghasilkan:
+
+1. UX Flow Diagram di bagian atas.
+2. List / Data Table.
+3. Add Form Modal.
+4. Confirmation Modal.
+5. Success Toast.
+6. List Page dengan data terbaru.
+7. Exit Confirmation.
+8. Seluruh UI States yang relevan.
+
+### 3.6 Pattern Restrictions
 
 AI MUST NOT:
 
@@ -141,6 +204,8 @@ AI MUST NOT:
 
 ## 4. Pattern 02 — Add Data via New Page
 
+**Figma Reference:** [Pattern 02 — New Page](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3310-27399&t=zv6vn5L7CsEWbtOz-1)
+
 ### 4.1 When to Use
 
 Pattern 02 digunakan ketika penambahan data membutuhkan halaman khusus dan mendukung penyimpanan sementara melalui Save as Draft.
@@ -153,9 +218,9 @@ Pattern 02 digunakan ketika penambahan data membutuhkan halaman khusus dan mendu
 | Membutuhkan Multi-step | Not Recommended |
 | Membutuhkan Preview Page | Not Recommended |
 
-### 4.2 Official Flow
+### 4.2 Official Main Flow
 
-AI MUST mengikuti urutan utama berikut:
+AI MUST mengikuti:
 
 1. Start.
 2. List / Data Table.
@@ -168,29 +233,75 @@ AI MUST mengikuti urutan utama berikut:
 9. List Page dengan data terbaru atau status Draft.
 10. End.
 
-### 4.3 Save as Draft
+AI MUST mempertahankan pemisahan antara Final Save dan Save as Draft.
 
-Save as Draft digunakan untuk menyimpan data yang belum diselesaikan sebagai draft.
+### 4.3 Save as Draft Flow
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST mengikuti mekanisme Save as Draft pada pattern resmi.
-- AI MUST mempertahankan kontrol dan urutan interaksi draft.
-- AI MUST menampilkan Draft Success Toast setelah penyimpanan draft berhasil.
-- AI MUST menggunakan status Draft sesuai ketentuan bisnis.
-- AI MUST NOT mengubah Save as Draft menjadi autosave.
-- AI MUST NOT menganggap Draft sebagai final submission.
+1. Menampilkan kontrol Save as Draft sesuai pattern.
+2. Mengikuti urutan penyimpanan Draft resmi.
+3. Menggunakan Draft Success Toast setelah proses berhasil.
+4. Menggunakan status Draft sesuai HSD/BRD.
+5. Mengikuti navigasi akhir Draft.
+6. Mempertahankan perbedaan antara Draft dan final submission.
+
+AI MUST NOT:
+
+- Mengubah Save as Draft menjadi autosave.
+- Menganggap Draft sebagai final submission.
+- Menghapus Draft Flow tanpa approval.
 
 ### 4.4 Cancel & Exit Flow
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST mengikuti kondisi form kosong atau terisi sesuai flow.
-- AI MUST menggunakan Confirmation Modal keluar sesuai referensi.
-- AI MUST mempertahankan data ketika pengguna memilih kembali ke form.
-- AI MUST NOT menghilangkan exit confirmation yang diwajibkan pattern.
+- Mengikuti kondisi form kosong atau terisi.
+- Menggunakan Exit Confirmation sesuai pattern.
+- Mempertahankan data ketika pengguna kembali ke form.
+- Mengikuti navigasi pembatalan resmi.
 
-### 4.5 Pattern Restrictions
+### 4.5 Required UI States
+
+AI MUST menghasilkan representasi desain untuk:
+
+- Default.
+- Focus.
+- Filled.
+- Required.
+- Validation Error.
+- Disabled.
+- Read-only jika berlaku.
+- Loading Final Save.
+- Loading Draft Save.
+- Confirmation.
+- Success.
+- Draft Success.
+- Save Error.
+- Draft Save Error.
+- Network Error.
+- Server Error.
+- Unsaved Changes.
+- Cancelled.
+- Updated List.
+
+### 4.6 Required Design Output
+
+AI MUST menghasilkan:
+
+1. UX Flow Diagram di bagian atas.
+2. List / Data Table.
+3. Add Form New Page.
+4. Final Save Flow.
+5. Save as Draft Flow.
+6. Confirmation Modal.
+7. Success Toast.
+8. Draft Success Toast.
+9. List Page dengan data terbaru atau status Draft.
+10. Exit Confirmation.
+11. Seluruh UI States yang relevan.
+
+### 4.7 Pattern Restrictions
 
 AI MUST NOT:
 
@@ -205,9 +316,11 @@ AI MUST NOT:
 
 ## 5. Pattern 03 — Multi-step Add Data
 
+**Figma Reference:** [Pattern 03 — Multi-step New Page](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3314-34982&t=zv6vn5L7CsEWbtOz-1)
+
 ### 5.1 When to Use
 
-Pattern 03 digunakan ketika informasi perlu dibagi menjadi beberapa tahapan pengisian yang memiliki urutan jelas.
+Pattern 03 digunakan ketika informasi perlu dibagi menjadi beberapa tahapan pengisian dengan urutan yang jelas.
 
 | Kondisi | Penggunaan |
 |---|---|
@@ -216,9 +329,9 @@ Pattern 03 digunakan ketika informasi perlu dibagi menjadi beberapa tahapan peng
 | Membutuhkan navigasi Next dan Back | Recommended |
 | Membutuhkan Preview Page khusus | Not Recommended |
 
-### 5.2 Official Flow
+### 5.2 Official Main Flow
 
-AI MUST mengikuti urutan utama berikut:
+AI MUST mengikuti:
 
 1. Start.
 2. List / Data Table.
@@ -232,33 +345,101 @@ AI MUST mengikuti urutan utama berikut:
 10. List Page dengan data terbaru.
 11. End.
 
-Jumlah, nama, dan urutan step MUST mengikuti pattern dan desain fitur yang telah disetujui.
+Jumlah, nama, dan urutan step MUST mengikuti approved requirements dan struktur pattern resmi.
 
 ### 5.3 Step Navigation
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST menggunakan struktur Multi-step resmi.
-- AI MUST mengikuti urutan step yang telah disetujui.
-- AI MUST menggunakan Progress Indicator resmi GEMS.
-- AI MUST mengikuti behavior Next dan Back sesuai flow.
-- AI MUST mempertahankan data ketika berpindah step sesuai ketentuan.
-- AI MUST menerapkan validasi berdasarkan HSD/BRD.
-- AI MUST NOT menambahkan, menghapus, menggabungkan, atau mengubah urutan step tanpa Human Approval.
+1. Menggunakan struktur Multi-step resmi.
+2. Menggunakan Progress Indicator resmi GEMS.
+3. Mengikuti behavior Next dan Back.
+4. Mempertahankan input ketika berpindah step.
+5. Mengikuti validasi berdasarkan HSD/BRD.
+6. Mengikuti urutan step yang disetujui.
+7. Menampilkan state step yang sedang aktif.
 
-### 5.4 Save & Exit Flow
+AI MUST NOT menambah, menghapus, menggabungkan, atau mengubah urutan step tanpa approval.
 
-**AI Rules:**
+### 5.4 Validation & Step Behavior
 
-- AI MUST mengikuti alur Save pada tahap akhir.
-- AI MUST menggunakan Confirmation Modal sesuai pattern.
-- AI MUST menampilkan Success Toast setelah proses berhasil.
-- AI MUST mengikuti alur pembatalan dan keluar yang tersedia.
-- AI MUST NOT menambahkan Preview atau Draft yang tidak termasuk dalam pattern.
+AI MUST:
+
+- Menggunakan validation rules resmi.
+- Menampilkan Validation Error pada field terkait.
+- Mengikuti aturan kapan pengguna dapat melanjutkan step.
+- Mempertahankan input ketika validasi gagal.
+- Mengikuti behavior navigasi step resmi.
+
+AI MUST NOT membuat aturan validasi atau step navigation baru.
+
+### 5.5 Save & Exit Flow
+
+AI MUST:
+
+- Mengikuti Final Save pada step terakhir.
+- Menggunakan Confirmation Modal.
+- Menampilkan Success Toast setelah berhasil.
+- Mengikuti Cancel dan Exit Flow resmi.
+- Mempertahankan input jika pengguna kembali ke form.
+
+### 5.6 Required UI States
+
+AI MUST menghasilkan representasi desain untuk:
+
+- Default Step.
+- Active Step.
+- Completed Step jika didukung.
+- Focus.
+- Filled.
+- Required.
+- Validation Error.
+- Disabled Next.
+- Disabled Save.
+- Read-only jika berlaku.
+- Loading.
+- Confirmation.
+- Success.
+- Save Error.
+- Network Error.
+- Server Error.
+- Unsaved Changes.
+- Cancelled.
+- Updated List.
+
+### 5.7 Required Design Output
+
+AI MUST menghasilkan:
+
+1. UX Flow Diagram di bagian atas.
+2. List / Data Table.
+3. Seluruh Multi-step Screens.
+4. Progress Indicator.
+5. Step Navigation.
+6. Validation States per step.
+7. Confirmation Modal.
+8. Success Toast.
+9. Updated List Page.
+10. Exit Confirmation.
+11. Seluruh UI States yang relevan.
+
+### 5.8 Pattern Restrictions
+
+AI MUST NOT:
+
+1. Mengubah Multi-step menjadi Single Page.
+2. Menambah atau menghapus step.
+3. Mengubah urutan step.
+4. Menambahkan Preview.
+5. Menambahkan Draft yang tidak didukung.
+6. Mengubah Next atau Back Behavior.
+7. Mengubah Save dan Confirmation Flow.
 
 ---
 
 ## 6. Pattern 04 — Multi-step with Preview
+
+**Figma Reference:** [Pattern 04 — Multi-step with Preview](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3338-41046&t=zv6vn5L7CsEWbtOz-1)
 
 ### 6.1 When to Use
 
@@ -271,9 +452,9 @@ Pattern 04 digunakan ketika pengisian data dilakukan secara bertahap dan membutu
 | Membutuhkan Preview Page | Recommended |
 | Membutuhkan Save as Draft | Recommended |
 
-### 6.2 Official Flow
+### 6.2 Official Main Flow
 
-AI MUST mengikuti urutan utama berikut:
+AI MUST mengikuti:
 
 1. Start.
 2. List / Data Table.
@@ -290,40 +471,95 @@ AI MUST mengikuti urutan utama berikut:
 
 ### 6.3 Preview Behavior
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST menggunakan struktur Preview resmi.
-- AI MUST menampilkan informasi yang telah diisi pada tahap sebelumnya.
-- AI MUST mengikuti pengelompokan dan urutan informasi yang disetujui.
-- AI MUST mengikuti behavior Back dan Save.
-- AI MUST NOT mengubah Preview menjadi Modal.
-- AI MUST NOT menambahkan field baru pada Preview.
-- AI MUST NOT menghilangkan Preview tanpa Human Approval.
+1. Menggunakan Preview Page resmi.
+2. Menampilkan informasi dari step sebelumnya.
+3. Mempertahankan pengelompokan data.
+4. Mengikuti behavior Back dan Save.
+5. Memastikan informasi Preview konsisten dengan input.
+6. Menggunakan komponen GEMS.
+
+AI MUST NOT:
+
+- Mengubah Preview menjadi Modal.
+- Menambahkan field baru pada Preview.
+- Menghilangkan Preview tanpa approval.
+- Membuat mekanisme edit langsung pada Preview tanpa dasar approved flow.
 
 ### 6.4 Save as Draft
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST mengikuti mekanisme Save as Draft resmi.
-- AI MUST menggunakan Draft Success Toast setelah proses berhasil.
-- AI MUST mengikuti status dan navigasi Draft yang ditentukan.
-- AI MUST NOT mengganti Save as Draft dengan autosave.
+- Menggunakan mekanisme Draft resmi.
+- Mengikuti posisi dan ketersediaan tindakan Draft.
+- Menampilkan Draft Success Toast setelah berhasil.
+- Menggunakan status Draft sesuai HSD/BRD.
+- Mengikuti navigasi akhir Draft.
+
+AI MUST NOT mengubah Draft menjadi autosave.
 
 ### 6.5 Cancel & Exit Flow
 
-**AI Rules:**
+AI MUST:
 
-- AI MUST mengikuti percabangan keluar dari form.
-- AI MUST menggunakan Confirmation Modal sesuai pattern.
-- AI MUST mempertahankan data jika pengguna kembali ke form.
-- AI MUST NOT mengubah urutan atau behavior pembatalan.
+- Mengikuti percabangan keluar resmi.
+- Menggunakan Exit Confirmation sesuai pattern.
+- Mempertahankan input jika pengguna kembali ke form.
+- Mengikuti navigasi resmi setelah pembatalan.
 
-### 6.6 Pattern Restrictions
+### 6.6 Required UI States
+
+AI MUST menghasilkan representasi desain untuk:
+
+- Default Step.
+- Active Step.
+- Completed Step jika didukung.
+- Focus.
+- Filled.
+- Required.
+- Validation Error.
+- Disabled.
+- Read-only jika berlaku.
+- Loading Final Save.
+- Loading Draft Save.
+- Preview Default.
+- Preview with Data.
+- Confirmation.
+- Success.
+- Draft Success.
+- Save Error.
+- Draft Save Error.
+- Network Error.
+- Server Error.
+- Unsaved Changes.
+- Cancelled.
+- Updated List.
+
+### 6.7 Required Design Output
+
+AI MUST menghasilkan:
+
+1. UX Flow Diagram di bagian atas.
+2. List / Data Table.
+3. Seluruh Multi-step Screens.
+4. Progress Indicator.
+5. Preview Page.
+6. Final Save Flow.
+7. Save as Draft Flow.
+8. Confirmation Modal.
+9. Success Toast.
+10. Draft Success Toast.
+11. Updated List Page.
+12. Exit Confirmation.
+13. Seluruh UI States yang relevan.
+
+### 6.8 Pattern Restrictions
 
 AI MUST NOT:
 
 1. Mengubah Multi-step menjadi Single Page.
-2. Menambahkan atau menghapus step.
+2. Menambah atau menghapus step.
 3. Mengubah urutan step.
 4. Menghapus Preview.
 5. Menghapus Draft.
@@ -333,70 +569,435 @@ AI MUST NOT:
 
 ---
 
-## 7. UX Flow Diagram
+## 7. Mandatory GEMS Component Usage
 
-### 7.1 Purpose
+### 7.1 Official Component Source
 
-UX Flow Diagram merupakan representasi visual dari perjalanan pengguna, mulai dari entry point, tindakan, percabangan keputusan, hingga proses selesai.
+Seluruh UI Add New Data MUST menggunakan komponen resmi GEMS Design System.
 
-Setiap UX Pattern Add New Data pada GEMS memiliki Flow Diagram sebagai acuan alur interaksi.
+**Component Source:** [GEMS Design System — Official Components](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System)
 
-AI MUST menghasilkan UX Flow Diagram pada setiap output desain Add New Data.
+### 7.2 Component Retrieval Rules
 
-**Core Principle:**
+Sebelum membuat desain, AI MUST:
 
-> Setiap UI Design MUST memiliki UX Flow Diagram yang menggambarkan alur aktual berdasarkan pattern terpilih dan data HSD/BRD yang diberikan.
+1. Mengakses GEMS Design System melalui Figma.
+2. Memeriksa komponen yang digunakan pada pattern terpilih.
+3. Mengidentifikasi seluruh komponen yang diperlukan.
+4. Mengambil komponen resmi GEMS.
+5. Memeriksa properties dan variants.
+6. Memeriksa states yang tersedia.
+7. Menggunakan instance komponen resmi jika akses Figma mendukungnya.
+8. Mengikuti typography, color, spacing, dan visual specification.
+9. Memastikan penggunaan komponen sesuai konteks.
+10. Memvalidasi hasil terhadap referensi GEMS.
 
-### 7.2 Flow Diagram Structure
+### 7.3 Component Integrity
+
+AI MUST mempertahankan:
+
+- Component structure.
+- Component anatomy.
+- Properties.
+- Variants.
+- States.
+- Typography.
+- Color.
+- Spacing.
+- Visual specification.
+- Interaction behavior.
+
+AI MUST NOT:
+
+- Menggunakan UI library eksternal sebagai pengganti GEMS.
+- Mengubah komponen resmi.
+- Membuat variant baru tanpa approval.
+- Mengubah visual specification berdasarkan preferensi AI.
+- Mengklaim menggunakan instance GEMS jika hanya membuat tiruan visual.
+
+### 7.4 Missing Component Handling
+
+Jika komponen tidak tersedia atau tidak dapat diverifikasi:
+
+1. AI MUST mengidentifikasi komponen yang dibutuhkan.
+2. AI MUST memeriksa alternatif resmi GEMS.
+3. AI MAY memberikan rekomendasi.
+4. AI MUST menjelaskan alasan dan dampaknya.
+5. AI MUST meminta Human Approval untuk komponen baru atau perubahan.
+6. AI MUST NOT mengimplementasikan perubahan sebelum approval.
+
+### 7.5 Component Documentation
+
+AI MUST menggunakan dokumentasi komponen GEMS yang relevan, termasuk:
+
+- Button.
+- Input.
+- Textarea.
+- Dropdown.
+- Toggle.
+- Badge.
+- Alert.
+- Notification.
+- Header.
+- Pagination.
+- Modal.
+- Breadcrumbs.
+- Empty State.
+- File Upload.
+- Navigation dan komponen pendukung lainnya.
+
+AI MUST memeriksa dokumentasi dan Figma resmi untuk memastikan komponen sesuai kebutuhan.
+
+---
+
+## 8. Mandatory UI States & Behavior
+
+### 8.1 State Management Principles
+
+Setiap desain Add New Data MUST menangani seluruh kondisi interaksi yang relevan.
+
+AI MUST NOT hanya menghasilkan Default State dan Success State.
+
+AI MUST memeriksa kondisi:
+
+- Form pertama kali dibuka.
+- Pengguna mulai mengisi data.
+- Data belum lengkap.
+- Input tidak valid.
+- Tindakan belum tersedia.
+- Penyimpanan berlangsung.
+- Konfirmasi penyimpanan.
+- Penyimpanan berhasil.
+- Penyimpanan gagal.
+- Gangguan koneksi.
+- Kesalahan sistem.
+- Penyimpanan Draft.
+- Penyimpanan Draft gagal.
+- Navigasi antarstep.
+- Preview.
+- Pembatalan.
+- Keluar dengan data belum tersimpan.
+
+### 8.2 Required State Matrix
+
+| State | When to Use | Required Behavior |
+|---|---|---|
+| Default | Form pertama kali dibuka | Menampilkan kondisi awal |
+| Focus | Field dipilih | Menggunakan Focus State resmi |
+| Filled | Field memiliki nilai | Mempertahankan input |
+| Required | Field wajib diisi | Mengikuti validation rules |
+| Validation Error | Input tidak valid | Menampilkan feedback kesalahan |
+| Disabled | Tindakan belum tersedia | Menggunakan Disabled State |
+| Read-only | Field tidak dapat diubah | Menampilkan nilai tanpa izin perubahan |
+| Active Step | Pengguna berada pada step tertentu | Menunjukkan step aktif |
+| Completed Step | Step selesai jika didukung | Menggunakan state progress resmi |
+| Loading | Sistem memproses Save | Menampilkan loading feedback |
+| Confirmation | Pengguna memilih Final Save | Menampilkan Confirmation Modal |
+| Success | Final Save berhasil | Menampilkan Success Toast |
+| Save Error | Final Save gagal | Menampilkan Error Feedback |
+| Network Error | Gangguan koneksi | Menampilkan feedback koneksi |
+| Server Error | Kesalahan sistem | Menampilkan feedback sistem |
+| Draft Saving | Draft sedang disimpan | Menampilkan loading feedback |
+| Draft Success | Draft berhasil disimpan | Menampilkan Draft Success Toast |
+| Draft Save Error | Penyimpanan Draft gagal | Menampilkan Error Feedback |
+| Preview | Pengguna meninjau data | Menampilkan informasi yang telah diisi |
+| Unsaved Changes | Keluar ketika form telah diisi | Mengikuti Exit Confirmation |
+| Cancelled | Pengguna membatalkan tindakan | Mengikuti navigasi resmi |
+| Updated List | Data berhasil disimpan | Menampilkan data terbaru |
+
+**Important:** State pada tabel merupakan kondisi interaksi yang wajib diperiksa, bukan daftar variant visual yang otomatis tersedia pada seluruh komponen GEMS.
+
+### 8.3 Default, Focus & Filled
+
+AI MUST:
+
+- Menggunakan form sesuai HSD/BRD.
+- Menggunakan komponen resmi GEMS.
+- Menampilkan kondisi awal.
+- Menggunakan Focus State resmi.
+- Mempertahankan input yang telah diisi.
+- Mengikuti field behavior resmi.
+
+### 8.4 Required & Validation Error
+
+AI MUST:
+
+- Menggunakan validation rules dari HSD/BRD.
+- Menampilkan error pada field terkait.
+- Menggunakan Error State resmi GEMS.
+- Mempertahankan input pengguna.
+- Mengikuti ketentuan validasi sebelum Save atau Next.
+
+AI MUST NOT:
+
+- Mengarang validation rules.
+- Mengarang pesan teknis sistem.
+- Membuat visual Error State baru tanpa approval.
+
+### 8.5 Disabled & Read-only
+
+AI MUST:
+
+- Menggunakan state resmi GEMS.
+- Mengikuti Role Access Matrix.
+- Mengikuti business rules.
+- Menentukan ketersediaan aksi berdasarkan requirement.
+
+AI MUST NOT menonaktifkan field atau tindakan berdasarkan asumsi.
+
+### 8.6 Loading
+
+AI MUST:
+
+- Menggunakan loading behavior resmi GEMS.
+- Menunjukkan proses penyimpanan.
+- Mencegah duplicate submission sesuai behavior sistem.
+- Mempertahankan input selama proses.
+- Menunggu hasil sistem sebelum menampilkan feedback akhir.
+
+AI MUST NOT menampilkan Success sebelum penyimpanan berhasil.
+
+### 8.7 Confirmation
+
+AI MUST:
+
+- Menggunakan Confirmation Modal resmi.
+- Mengikuti urutan Save dan Confirmation.
+- Menggunakan wording sesuai konteks bisnis.
+- Mengikuti tindakan konfirmasi dan pembatalan.
+- Mempertahankan input jika pengguna membatalkan konfirmasi.
+
+### 8.8 Success
+
+AI MUST:
+
+- Menggunakan Success Toast resmi.
+- Menampilkan feedback setelah penyimpanan berhasil.
+- Mengikuti navigasi akhir pattern.
+- Menampilkan data terbaru sesuai hasil sistem.
+
+### 8.9 Save Error
+
+AI MUST:
+
+- Menggunakan Error Feedback resmi GEMS.
+- Menjelaskan bahwa penyimpanan gagal.
+- Mempertahankan input pengguna.
+- Mengikuti retry behavior jika didukung.
+- Menjaga konteks form sesuai approved flow.
+
+AI MUST NOT menampilkan Success ketika Save gagal.
+
+### 8.10 Network Error
+
+AI MUST:
+
+- Menggunakan feedback gangguan koneksi resmi GEMS.
+- Mempertahankan input yang belum tersimpan.
+- Mengikuti retry behavior yang disetujui.
+- Tidak menganggap Save berhasil jika hasil belum terkonfirmasi.
+
+AI MUST NOT membuat offline saving atau automatic retry tanpa approval.
+
+### 8.11 Server Error
+
+AI MUST:
+
+- Menggunakan Error Feedback resmi.
+- Menampilkan pesan sesuai konteks.
+- Mempertahankan input pengguna.
+- Mengikuti error handling berdasarkan requirement.
+
+AI MUST NOT mengarang kode error atau mekanisme backend.
+
+### 8.12 Draft Saving, Success & Error
+
+Berlaku pada Pattern 02 dan Pattern 04.
+
+AI MUST:
+
+- Membedakan Final Save dan Draft Save.
+- Menggunakan loading feedback saat Draft disimpan.
+- Menggunakan Draft Success Toast setelah berhasil.
+- Menampilkan Error Feedback jika Draft gagal.
+- Mempertahankan input jika Draft gagal.
+- Mengikuti status dan navigasi Draft resmi.
+
+AI MUST NOT menganggap Draft sebagai final submission.
+
+### 8.13 Multi-step States
+
+Berlaku pada Pattern 03 dan Pattern 04.
+
+AI MUST:
+
+- Menampilkan Active Step.
+- Menggunakan Progress Indicator resmi.
+- Mengikuti Next dan Back Behavior.
+- Mempertahankan input antarstep.
+- Menampilkan Validation Error pada step terkait.
+- Mengikuti ketentuan Disabled Next atau Save.
+
+AI MUST NOT membuat step navigation baru tanpa approval.
+
+### 8.14 Preview States
+
+Berlaku pada Pattern 04.
+
+AI MUST:
+
+- Menampilkan informasi yang telah diisi.
+- Memastikan data Preview sesuai form.
+- Mengikuti pengelompokan informasi resmi.
+- Menggunakan komponen GEMS.
+- Mengikuti Back dan Save Behavior.
+
+AI MUST NOT menambahkan field atau aksi baru pada Preview tanpa approval.
+
+### 8.15 Unsaved Changes
+
+AI MUST:
+
+- Memeriksa kondisi form kosong atau sudah terisi.
+- Mengikuti decision point resmi.
+- Menggunakan Exit Confirmation jika diwajibkan.
+- Mempertahankan input jika pengguna kembali ke form.
+- Mengikuti navigasi resmi setelah pengguna mengonfirmasi keluar.
+
+### 8.16 State Completeness Rules
+
+AI MUST:
+
+1. Memeriksa seluruh state pada pattern terpilih.
+2. Membuat representasi UI untuk setiap state yang relevan.
+3. Menempatkan state bersama screen asalnya.
+4. Menggunakan komponen GEMS.
+5. Menghubungkan state dengan flow dan tindakan pengguna.
+6. Menjelaskan state yang tidak berlaku.
+7. Memisahkan kebutuhan error handling baru dari approved flow.
+8. Meminta Human Approval jika diperlukan flow, screen, atau behavior baru.
+
+AI MUST NOT menghilangkan Error, Loading, Validation, atau Unsaved Changes hanya karena tidak ditampilkan pada Main Flow.
+
+---
+
+## 9. Mandatory UX Flow Diagram & Figma Layout
+
+### 9.1 Flow-First Design
+
+Setiap output Add New Data MUST memiliki:
+
+**Bagian Atas — UX Flow Diagram**
+
+**Bagian Bawah — UI Screens & States**
+
+Keduanya MUST berada dalam satu section atau kelompok desain yang sama di Figma.
+
+AI MUST mengikuti struktur visual UX Pattern GEMS.
+
+### 9.2 Figma Layout Rules
+
+AI MUST:
+
+1. Membuat satu section atau kelompok desain untuk setiap fitur Add New Data.
+2. Menempatkan UX Flow Diagram secara fisik di atas UI Screens.
+3. Menempatkan Main Flow sebagai jalur utama.
+4. Menampilkan Alternative Flow sebagai percabangan terhubung.
+5. Menempatkan UI Screens di bawah Flow Diagram.
+6. Menyusun UI Screens sesuai urutan Main Flow.
+7. Menempatkan variasi state bersama screen asalnya.
+8. Menggunakan nama screen dan state yang jelas.
+9. Memastikan seluruh flow node dapat ditelusuri ke screen atau state.
+10. Menjaga konsistensi diagram dan UI.
+11. Mengikuti layout referensi GEMS.
+
+AI MUST NOT hanya memberikan deskripsi flow dalam teks tanpa membuat Flow Diagram pada canvas Figma.
+
+### 9.3 Required Flow Elements
 
 | Elemen | Fungsi | Ketentuan |
 |---|---|---|
-| Start | Menandai awal proses | Required |
-| Screen / Page | Menunjukkan halaman atau tampilan | Required |
-| User Action | Menunjukkan tindakan pengguna | Required |
-| Decision Point | Menunjukkan percabangan kondisi | Sesuai pattern |
-| Confirmation | Menunjukkan proses konfirmasi | Sesuai pattern |
-| System Feedback | Menunjukkan respons sistem | Sesuai pattern |
-| Navigation Path | Menunjukkan perpindahan alur | Required |
-| End | Menandai akhir proses | Required |
+| Start | Awal proses | Required |
+| Entry Point | Halaman awal | Required |
+| User Action | Tindakan pengguna | Required |
+| Screen / Page | Tampilan yang digunakan | Required |
+| Decision Point | Percabangan kondisi | Sesuai pattern |
+| Confirmation | Konfirmasi tindakan | Sesuai pattern |
+| Draft Flow | Penyimpanan sementara | Pattern 02 & 04 |
+| Step Navigation | Navigasi tahapan | Pattern 03 & 04 |
+| Preview | Pemeriksaan data | Pattern 04 |
+| System Feedback | Respons sistem | Required |
+| Error Handling | Kondisi kegagalan yang relevan | Required untuk diperiksa |
+| Navigation Path | Hubungan antarflow | Required |
+| End | Akhir proses | Required |
 
-### 7.3 Main Flow
+### 9.4 Main Flow
 
-Main Flow merupakan alur utama yang digunakan pengguna untuk menyelesaikan proses penambahan data.
+AI MUST:
 
-**AI Rules:**
+- Mengambil Main Flow dari pattern resmi.
+- Mempertahankan urutan node.
+- Menggunakan data HSD/BRD.
+- Menghasilkan screen sesuai flow.
+- Mengikuti navigasi resmi.
 
-- AI MUST mengambil Main Flow dari pattern resmi GEMS.
-- AI MUST mempertahankan urutan interaksi.
-- AI MUST mengganti contoh konten dengan data bisnis yang diberikan.
-- AI MUST menggunakan nama halaman dan tindakan sesuai HSD/BRD.
-- AI MUST memastikan setiap flow node sesuai dengan UI Design.
-- AI MUST NOT membuat Main Flow baru di luar pattern resmi.
+AI MUST NOT membuat Main Flow baru tanpa approval.
 
-### 7.4 Alternative Flow
+### 9.5 Alternative Flow
 
-Alternative Flow merupakan alur yang muncul ketika pengguna memilih tindakan lain atau memenuhi kondisi tertentu.
+AI MUST:
 
-Contoh percabangan yang terdapat dalam pattern:
+- Mengambil Alternative Flow dari pattern resmi.
+- Menampilkan Cancel dan Exit.
+- Mempertahankan decision point.
+- Mengikuti Confirmation Modal.
+- Menampilkan Draft Flow jika tersedia.
+- Mempertahankan jalur kembali ke form.
 
-- Pengguna membatalkan pengisian.
-- Pengguna menutup form.
-- Form kosong atau sudah terisi.
-- Pengguna kembali mengedit.
-- Pengguna memilih Save as Draft.
-- Pengguna membatalkan Confirmation Modal.
+AI MUST NOT menambahkan percabangan baru tanpa Human Approval.
 
-**AI Rules:**
+### 9.6 State & Error Flow
 
-- AI MUST menampilkan seluruh Alternative Flow yang berlaku pada pattern terpilih.
-- AI MUST mempertahankan decision point resmi.
-- AI MUST mempertahankan hubungan antarflow.
-- AI MUST NOT menghilangkan percabangan yang terdapat pada pattern.
-- AI MUST NOT menambahkan percabangan baru tanpa dasar HSD/BRD dan Human Approval.
+AI MUST memastikan setiap state yang relevan memiliki hubungan yang jelas dengan flow.
 
-### 7.5 Business Data Integration
+Jika state dapat ditampilkan pada screen yang sudah tersedia, AI MUST menggunakan screen tersebut dengan variasi state yang sesuai.
 
-UX Flow Diagram MUST menggunakan data aktual dari kebutuhan fitur.
+Jika state membutuhkan screen, decision point, atau flow baru, AI MUST:
+
+1. Mengidentifikasi kebutuhan.
+2. Membuat rekomendasi terpisah.
+3. Menjelaskan dampaknya.
+4. Meminta Human Approval.
+5. Menunggu approval sebelum implementasi.
+
+### 9.7 Flow-to-Screen Mapping
+
+| Flow Condition | UI Screen / State | Expected Result |
+|---|---|---|
+| Klik Add Data | Default Form | Form terbuka |
+| Mulai mengisi | Focus / Filled | Input ditampilkan |
+| Input tidak valid | Validation Error | Error feedback |
+| Klik Next | Step Navigation | Step berikutnya sesuai aturan |
+| Klik Preview | Preview | Data ditampilkan untuk ditinjau |
+| Klik Save | Confirmation | Confirmation Modal |
+| Konfirmasi Save | Loading | Proses penyimpanan |
+| Save berhasil | Success | Success Toast |
+| Save gagal | Save Error | Error feedback |
+| Klik Save as Draft | Draft Saving | Proses penyimpanan Draft |
+| Draft berhasil | Draft Success | Draft Success Toast |
+| Draft gagal | Draft Save Error | Error feedback |
+| Koneksi gagal | Network Error | Feedback koneksi |
+| Server gagal | Server Error | Feedback sistem |
+| Keluar dengan input | Unsaved Changes | Exit Confirmation |
+| Save berhasil | Updated List | Data terbaru ditampilkan |
+
+AI MUST menyesuaikan mapping dengan pattern terpilih.
+
+---
+
+## 10. Business Data Integration
+
+### 10.1 Data Source Matrix
 
 | Data | Sumber |
 |---|---|
@@ -404,290 +1005,108 @@ UX Flow Diagram MUST menggunakan data aktual dari kebutuhan fitur.
 | User Role | HSD/BRD / Role Access Matrix |
 | Nama halaman | Approved design / HSD/BRD |
 | Nama form | HSD/BRD |
+| Field | HSD/BRD |
 | Tindakan pengguna | Approved business flow |
-| Validasi | HSD/BRD |
+| Validation | HSD/BRD |
 | Status data | HSD/BRD |
 | Confirmation | Pattern GEMS dan konteks bisnis |
 | System Feedback | Pattern GEMS dan hasil proses |
 
-**AI Rules:**
-
-- AI MUST menggunakan informasi bisnis yang tersedia.
-- AI MUST menjaga konsistensi istilah antara Flow Diagram dan UI Design.
-- AI MUST menggunakan status yang telah ditentukan.
-- AI MUST NOT mengarang field, role, status, atau business rule.
-- AI MUST meminta klarifikasi jika informasi penting belum tersedia.
-
-### 7.6 Flow-to-Screen Mapping
-
-Setiap flow node yang merepresentasikan screen atau state MUST dapat ditelusuri ke desain yang dihasilkan.
-
-**AI Rules:**
-
-- AI MUST menghubungkan Flow Diagram dengan UI Screens.
-- AI MUST memastikan tindakan dalam flow tersedia pada UI.
-- AI MUST memastikan navigasi UI mengikuti flow.
-- AI MUST menampilkan confirmation dan feedback yang diperlukan.
-- AI MUST NOT membuat screen tambahan di luar approved flow.
-- AI MUST NOT menghasilkan flow dan UI dengan behavior berbeda.
-
----
-
-## 8. UX States & Feedback
-
-UX States digunakan untuk menjelaskan kondisi interaksi pengguna dan respons sistem pada proses Add New Data.
-
-### 8.1 State Usage Matrix
-
-| State | Kapan Digunakan | Behavior |
-|---|---|---|
-| Default | Form pertama kali dibuka | Menampilkan kondisi awal |
-| Filled | Pengguna telah mengisi field | Mempertahankan nilai input |
-| Validation Error | Data tidak memenuhi aturan validasi | Menampilkan feedback validasi |
-| Disabled | Tindakan belum tersedia | Mencegah aksi yang tidak diizinkan |
-| Loading | Sistem sedang memproses | Menampilkan feedback proses |
-| Success | Penyimpanan berhasil | Menampilkan Success Toast sesuai pattern |
-| Error | Proses gagal | Menampilkan feedback error resmi |
-| Draft Success | Draft berhasil disimpan | Mengikuti alur Draft Success |
-| Unsaved Changes | Pengguna keluar dengan perubahan belum tersimpan | Mengikuti Exit Confirmation |
-
-State pada tabel merupakan kondisi interaksi yang harus diperiksa, bukan daftar variant visual yang otomatis tersedia pada semua komponen GEMS.
-
-### 8.2 Validation Error
-
-**AI Rules:**
-
-- AI MUST menggunakan validation rules dari HSD/BRD.
-- AI MUST menggunakan state validasi resmi dari komponen GEMS terkait.
-- AI MUST mempertahankan input saat validasi gagal.
-- AI MUST NOT membuat aturan validasi baru.
-- AI MUST NOT mengarang visual Error State.
-
-### 8.3 Disabled State
-
-**AI Rules:**
-
-- AI MUST menggunakan Disabled State resmi jika tersedia.
-- AI MUST menentukan kondisi disabled berdasarkan business rule.
-- AI MUST NOT membuat visual disabled custom.
-- AI MUST NOT menonaktifkan tindakan tanpa alasan yang didukung requirement.
-
-### 8.4 Loading State
-
-**AI Rules:**
-
-- AI MUST mengikuti mekanisme loading yang tersedia dalam GEMS dan kebutuhan sistem.
-- AI MUST menjaga agar proses penyimpanan tidak menghasilkan tindakan ganda yang tidak diinginkan.
-- AI MUST NOT menampilkan Success sebelum proses berhasil.
-- AI MUST NOT menciptakan visual Loading State baru tanpa referensi resmi.
-
-### 8.5 Success State
-
-**AI Rules:**
-
-- AI MUST mengikuti Success Toast pada pattern.
-- AI MUST menampilkan feedback setelah proses berhasil.
-- AI MUST mengikuti navigasi akhir sesuai flow.
-- AI MUST NOT mengganti Success Toast dengan Modal tambahan tanpa approval.
-
-### 8.6 Error State
-
-**AI Rules:**
-
-- AI MUST menggunakan feedback Error resmi GEMS.
-- AI MUST mempertahankan data yang relevan.
-- AI MUST mengikuti behavior kegagalan yang telah ditentukan.
-- AI MUST NOT menambahkan Error Page atau flow baru tanpa approval.
-
-### 8.7 Draft Success
-
-**AI Rules:**
-
-- AI MUST menggunakan Draft Success hanya pada pattern yang mendukung Draft.
-- AI MUST mengikuti status dan navigasi Draft.
-- AI MUST NOT menganggap Draft sebagai final submission.
-
-### 8.8 Unsaved Changes
-
-**AI Rules:**
-
-- AI MUST mengikuti Exit Confirmation sesuai pattern.
-- AI MUST mempertahankan data jika pengguna kembali mengedit.
-- AI MUST NOT membuang data pengguna di luar behavior yang disetujui.
-
----
-
-## 9. GEMS Design System Compliance
-
-Seluruh UI yang dihasilkan dari Add New Data UX Pattern MUST menggunakan komponen resmi GEMS Design System.
-
-### 9.1 Component Retrieval
+### 10.2 Business Data Rules
 
 AI MUST:
 
-1. Mengakses GEMS Design System melalui Figma.
-2. Memeriksa komponen yang digunakan pada pattern terpilih.
-3. Mengidentifikasi seluruh komponen yang diperlukan.
-4. Mengambil komponen resmi beserta variant dan state yang relevan.
-5. Menggunakan komponen tersebut pada UI Design.
-6. Memastikan penggunaan komponen sesuai referensi GEMS.
-
-### 9.2 Component Integrity
-
-AI MUST mempertahankan:
-
-- Struktur komponen.
-- Properties.
-- Variant.
-- State.
-- Visual specification.
-- Interaction behavior.
+1. Menggunakan informasi bisnis yang tersedia.
+2. Menjaga konsistensi istilah pada Flow Diagram dan UI.
+3. Menggunakan field sesuai HSD/BRD.
+4. Menggunakan status yang telah ditentukan.
+5. Mengikuti role dan permission.
+6. Menggunakan validation rules yang disetujui.
+7. Mengikuti approved business flow.
 
 AI MUST NOT:
 
-- Membuat komponen custom.
-- Menggunakan komponen dari UI library eksternal.
-- Mengubah variant atau state.
-- Mengubah visual specification.
-- Mengganti komponen resmi berdasarkan preferensi visual.
+- Mengarang field.
+- Mengarang role.
+- Mengarang status.
+- Mengarang validation rules.
+- Mengubah proses bisnis.
+- Menggunakan data contoh sebagai business requirement.
 
-Jika komponen yang diperlukan tidak tersedia atau tidak dapat diverifikasi, AI MUST melaporkan keterbatasan tersebut dan meminta Human Review.
-
----
-
-## 10. Required AI Design Output
-
-Setiap permintaan desain Add New Data MUST menghasilkan output berikut.
-
-### 10.1 UX Pattern Selection
-
-AI MUST menjelaskan:
-
-- Nama fitur.
-- User Role.
-- Pattern terpilih.
-- Referensi Figma.
-- Alasan pemilihan.
-- Kesesuaian dengan HSD/BRD.
-
-### 10.2 UX Flow Diagram
-
-AI MUST menghasilkan:
-
-- Main Flow.
-- Alternative Flow.
-- Decision Point.
-- Confirmation Flow.
-- Cancel dan Exit Flow.
-- Draft Flow jika tersedia.
-- Preview Flow jika tersedia.
-- System Feedback.
-- End State.
-
-UX Flow Diagram MUST menggunakan data bisnis yang telah diberikan.
-
-### 10.3 UI Design
-
-AI MUST menghasilkan:
-
-- Seluruh screen sesuai pattern terpilih.
-- Form dengan data HSD/BRD.
-- Komponen resmi GEMS.
-- Confirmation dan feedback sesuai flow.
-- State interaksi yang relevan.
-
-### 10.4 Flow-to-Screen Mapping
-
-AI MUST menyediakan hubungan antara flow dan UI.
-
-| Flow Node | UI Screen / State | User Action | Expected Result |
-|---|---|---|---|
-| List Data | List Page | Klik Tambah Data | Form terbuka |
-| Add Form | Modal / New Page | Isi data | Form terisi |
-| Save | Form | Klik Simpan | Confirmation ditampilkan |
-| Confirmation | Confirmation Modal | Konfirmasi | Proses penyimpanan |
-| Success | Success Toast | Sistem memberikan feedback | Daftar data diperbarui |
-
-Tabel merupakan contoh mapping alur utama. AI MUST menyesuaikannya dengan pattern terpilih dan menyertakan percabangan yang berlaku.
-
-### 10.5 Compliance Report
-
-AI MUST menjelaskan:
-
-- Kesesuaian pattern.
-- Kesesuaian Flow Diagram.
-- Kesesuaian UI Screens.
-- Penggunaan komponen GEMS.
-- Kesesuaian dengan HSD/BRD.
-- Kebutuhan Human Approval jika terdapat pengecualian.
+Jika informasi penting belum tersedia, AI MUST meminta klarifikasi atau menandainya sebagai Pending Requirement.
 
 ---
 
-## 11. UX Pattern Selection Rules for AI
+## 11. Pattern Recommendation & Human Approval
 
-AI MUST mengikuti urutan pengambilan keputusan berikut:
+### 11.1 When AI May Recommend Changes
 
-**Step 1 — Read Requirements**
+AI MAY merekomendasikan penyesuaian UX Flow ketika:
 
-Identifikasi fitur, tujuan, data, field, validation, status, role, dan business flow dari HSD/BRD.
+- Tidak ada pattern resmi yang memenuhi kebutuhan.
+- Entry point tidak sesuai.
+- Struktur form tidak didukung.
+- Business rule membutuhkan alur berbeda.
+- Diperlukan state atau error handling baru.
+- Terdapat konflik antara HSD/BRD dan pattern resmi.
 
-**Step 2 — Inspect Official Patterns**
+AI MUST menggunakan pattern resmi sebagai dasar rekomendasi.
 
-Periksa keempat Add New Data UX Pattern pada Figma GEMS, termasuk Flow Diagram dan UI Screens.
+AI MUST NOT langsung mengimplementasikan proposed flow.
 
-**Step 3 — Identify Interaction Needs**
+### 11.2 Recommendation Workflow
 
-Tentukan apakah proses membutuhkan Modal, New Page, Multi-step, Preview, atau Draft.
+**Step 1 — Identify Gap**
 
-**Step 4 — Select Pattern**
+AI MUST menjelaskan ketidaksesuaian antara requirement dan pattern.
 
-Pilih pattern berdasarkan UX Pattern Selection Matrix dan approved requirements.
+**Step 2 — Evaluate Existing Patterns**
 
-**Step 5 — Validate Pattern Compatibility**
+AI MUST memeriksa keempat pattern sebelum mengusulkan perubahan.
 
-Pastikan seluruh behavior bawaan pattern sesuai kebutuhan bisnis. Jika tidak sesuai, laporkan konflik dan minta Human Review.
+**Step 3 — Recommend Flow**
 
-**Step 6 — Retrieve GEMS Components**
+AI MAY memberikan usulan penyesuaian flow.
 
-Identifikasi dan gunakan seluruh komponen resmi GEMS yang diperlukan oleh pattern terpilih.
+**Step 4 — Explain Impact**
 
-**Step 7 — Confirm Pattern**
+AI MUST menjelaskan dampak terhadap screens, states, interactions, dan navigation.
 
-Gunakan pattern yang telah disetujui. Jika belum ada keputusan dan pemilihan tidak dapat dipastikan, minta Human Approval.
+**Step 5 — Request Human Approval**
 
-**Step 8 — Generate UX Flow Diagram**
+AI MUST meminta persetujuan manusia yang berwenang.
 
-Gunakan Flow Diagram resmi dan sesuaikan konten dengan data HSD/BRD tanpa mengubah struktur.
+**Step 6 — Wait for Approval**
 
-**Step 9 — Generate UI Design**
+AI MUST NOT menerapkan perubahan selama approval belum diberikan.
 
-Buat seluruh UI Screens sesuai flow dengan komponen resmi GEMS.
+**Step 7 — Implement Approved Changes**
 
-**Step 10 — Apply UX States**
+Setelah disetujui, AI MAY menerapkan perubahan sesuai cakupan approval.
 
-Terapkan state dan feedback yang relevan berdasarkan requirement dan referensi resmi.
+**Step 8 — Validate**
 
-**Step 11 — Validate Flow & UI**
+AI MUST memvalidasi hasil terhadap HSD/BRD dan GEMS.
 
-Pastikan setiap screen, interaction, confirmation, dan navigation sesuai dengan Flow Diagram.
+### 11.3 Recommendation Format
 
-**Step 12 — Request Human Approval When Needed**
+| Informasi | Keterangan |
+|---|---|
+| Feature | Nama fitur |
+| User Role | Role pengguna |
+| Current Pattern | Pattern resmi yang paling sesuai |
+| Figma Reference | Referensi pattern |
+| Business Requirement | Kebutuhan HSD/BRD |
+| Identified Gap | Ketidaksesuaian |
+| Recommended Flow | Usulan penyesuaian |
+| Impact | Dampak screen, state, dan navigation |
+| Approval Status | Pending Human Approval |
 
-Jika dibutuhkan perubahan terhadap pattern, flow, komponen, atau behavior, AI MUST meminta persetujuan manusia sebelum implementasi.
-
----
-
-## 12. Human Approval Rules
-
-AI MAY memberikan rekomendasi UX ketika pattern yang tersedia tidak sepenuhnya memenuhi kebutuhan bisnis.
-
-Namun, rekomendasi MUST dipisahkan dari desain yang telah disetujui.
-
-### 12.1 Approval Required
+### 11.4 Approval Required
 
 AI MUST meminta Human Approval sebelum:
 
-1. Mengganti pattern.
+1. Mengganti pattern yang sudah disetujui.
 2. Menggabungkan pattern.
 3. Menambah atau menghapus screen.
 4. Menambah atau menghapus step.
@@ -699,130 +1118,252 @@ AI MUST meminta Human Approval sebelum:
 10. Mengubah Cancel atau Exit Flow.
 11. Menambahkan interaksi baru.
 12. Mengubah komponen GEMS.
+13. Mengubah error handling di luar approved behavior.
 
-### 12.2 Recommendation Format
+### 11.5 Approval Enforcement
 
-AI MUST menggunakan format berikut:
+AI MUST:
 
-| Informasi | Keterangan |
-|---|---|
-| Feature | Nama fitur |
-| Current Pattern | Pattern yang digunakan |
-| Figma Reference | Referensi resmi |
-| Business Requirement | Kebutuhan dari HSD/BRD |
-| Identified Issue | Ketidaksesuaian atau keterbatasan |
-| Recommendation | Usulan perubahan |
-| Impact | Dampak terhadap flow dan screen |
-| Approval Status | Pending Human Approval |
-
-### 12.3 Approval Enforcement
-
-- AI MUST memisahkan rekomendasi dari implementasi.
-- AI MUST menunggu approval sebelum menerapkan perubahan.
-- AI MUST NOT menganggap rekomendasi sebagai approval.
-- AI MUST NOT menganggap tidak adanya respons sebagai persetujuan.
-- AI MUST NOT mengubah approved pattern tanpa approval baru.
-
----
-
-## 13. AI Restrictions
+- Memisahkan Approved Flow dan Proposed Flow.
+- Menjelaskan alasan perubahan.
+- Meminta explicit Human Approval.
+- Menunggu keputusan sebelum implementasi.
+- Mengikuti batasan persetujuan.
 
 AI MUST NOT:
 
-1. Membuat Add New Data UX Pattern baru.
-2. Menggabungkan dua atau lebih pattern.
-3. Mengganti pattern tanpa Human Approval.
-4. Menambah atau menghapus screen.
-5. Menambah atau menghapus step.
-6. Mengubah urutan interaksi.
-7. Mengubah decision point resmi.
+- Menganggap rekomendasi sebagai approval.
+- Menganggap tidak adanya respons sebagai persetujuan.
+- Menerapkan perubahan berstatus Pending.
+- Mengubah bagian di luar cakupan persetujuan.
+
+---
+
+## 12. Required AI Design Output
+
+Setiap permintaan Add New Data MUST menghasilkan:
+
+### Output 01 — Pattern Selection
+
+- Feature Name.
+- User Role.
+- Selected Pattern.
+- Selection Rationale.
+- Requirement Compatibility.
+
+### Output 02 — UX Flow Diagram
+
+- Main Flow.
+- Alternative Flow.
+- Decision Points.
+- Confirmation Flow.
+- Cancel & Exit Flow.
+- Draft Flow jika tersedia.
+- Step Navigation jika tersedia.
+- Preview Flow jika tersedia.
+- Success Flow.
+- Approved Error Handling.
+- End State.
+
+### Output 03 — UI Screens
+
+- Seluruh screens sesuai pattern.
+- Form dengan field dari HSD/BRD.
+- Komponen resmi GEMS.
+- Confirmation dan feedback.
+- Seluruh UI States yang relevan.
+
+### Output 04 — State Coverage
+
+AI MUST memeriksa:
+
+- Default.
+- Focus.
+- Filled.
+- Required.
+- Validation Error.
+- Disabled.
+- Read-only.
+- Loading.
+- Confirmation.
+- Success.
+- Save Error.
+- Network Error.
+- Server Error.
+- Draft Saving jika tersedia.
+- Draft Success jika tersedia.
+- Draft Save Error jika tersedia.
+- Active Step jika tersedia.
+- Completed Step jika tersedia.
+- Preview jika tersedia.
+- Unsaved Changes.
+
+State yang tidak berlaku MUST disertai alasan.
+
+### Output 05 — Flow-to-Screen Mapping
+
+AI MUST menunjukkan hubungan antara flow node, screen, action, state, dan expected result.
+
+### Output 06 — Compliance & Approval
+
+AI MUST melaporkan:
+
+- Pattern Compliance.
+- Flow Compliance.
+- GEMS Component Compliance.
+- HSD/BRD Compliance.
+- State Completeness.
+- Pending Recommendations.
+- Human Approval Status.
+
+---
+
+## 13. Mandatory AI Execution Workflow
+
+AI MUST mengikuti urutan berikut.
+
+**Step 1 — Read HSD/BRD**
+
+Identifikasi kebutuhan bisnis, field, role, permission, validation, status, dan flow.
+
+**Step 2 — Inspect GEMS Patterns**
+
+Periksa keempat Add New Data UX Pattern beserta Flow Diagram dan UI Screens.
+
+**Step 3 — Compare Patterns**
+
+Bandingkan kebutuhan dengan struktur dan behavior setiap pattern.
+
+**Step 4 — Select Pattern**
+
+Pilih pattern paling sesuai dan jelaskan alasannya.
+
+**Step 5 — Check Compatibility**
+
+Identifikasi konflik dan kebutuhan yang belum didukung.
+
+**Step 6 — Request Human Approval if Needed**
+
+Jika pattern tidak sesuai, buat rekomendasi dan tunggu approval.
+
+**Step 7 — Retrieve GEMS Components**
+
+Ambil seluruh komponen, properties, variants, dan states yang diperlukan.
+
+**Step 8 — Generate UX Flow Diagram**
+
+Gunakan flow resmi dan sesuaikan dengan HSD/BRD.
+
+**Step 9 — Generate UI Screens**
+
+Buat seluruh screen sesuai pattern dan flow.
+
+**Step 10 — Generate UI States**
+
+Buat seluruh state relevan, termasuk validation, loading, error, Draft, dan unsaved changes.
+
+**Step 11 — Map Flow to Screens**
+
+Pastikan seluruh node, screens, actions, dan states saling sesuai.
+
+**Step 12 — Validate Against GEMS**
+
+Bandingkan hasil dengan pattern dan komponen resmi.
+
+**Step 13 — Report Compliance**
+
+Laporkan hasil validasi, keterbatasan, dan approval yang masih diperlukan.
+
+---
+
+## 14. AI Restrictions
+
+AI MUST NOT:
+
+1. Membuat pattern baru tanpa approval.
+2. Menggabungkan pattern tanpa approval.
+3. Mengubah approved pattern.
+4. Menambah atau menghapus screen tanpa approval.
+5. Menambah atau menghapus step tanpa approval.
+6. Mengubah urutan flow.
+7. Mengubah decision point.
 8. Mengubah Save, Draft, Preview, atau Confirmation Flow.
 9. Menghilangkan Cancel atau Exit Flow.
-10. Membuat UI tanpa UX Flow Diagram.
-11. Membuat UX Flow Diagram yang tidak sesuai UI.
-12. Menggunakan data bisnis yang tidak terdapat dalam HSD/BRD.
-13. Mengarang validation rules, role, atau status.
-14. Membuat komponen custom.
-15. Mengganti komponen resmi GEMS.
-16. Mengubah variant, state, atau visual specification.
-17. Menambahkan behavior yang belum disetujui.
-18. Mengimplementasikan rekomendasi tanpa Human Approval.
-19. Menganggap screenshot contoh sebagai izin untuk mengubah pattern.
-20. Menyatakan desain compliant tanpa melakukan verifikasi.
+10. Menghilangkan Error atau Loading State yang relevan.
+11. Menghasilkan UI tanpa Flow Diagram.
+12. Menghasilkan flow yang berbeda dari UI.
+13. Mengarang field, validation, role, atau status.
+14. Menggunakan komponen non-GEMS.
+15. Membuat komponen custom tanpa approval.
+16. Mengubah properties atau variants di luar ketentuan.
+17. Mengimplementasikan Proposed Flow sebelum Human Approval.
+18. Menganggap screenshot contoh sebagai izin untuk mengubah pattern.
+19. Menyatakan desain compliant tanpa verifikasi.
 
 ---
 
-## 14. Quality Assurance & Compliance
+## 15. Quality Assurance & Compliance
 
-AI MUST melakukan validasi sebelum menyatakan desain siap digunakan.
+### 15.1 Requirement Compliance
 
-### 14.1 Requirement Compliance
+AI MUST memastikan field, status, validation, role, dan permission sesuai approved HSD/BRD.
 
-- AI MUST memastikan seluruh kebutuhan data berasal dari HSD/BRD.
-- AI MUST memastikan role dan permission sesuai dokumen yang disetujui.
-- AI MUST memastikan business flow tidak berubah.
-- AI MUST NOT menambahkan kebutuhan berdasarkan asumsi.
+### 15.2 Pattern Compliance
 
-### 14.2 Pattern Compliance
+AI MUST memastikan pattern terpilih sesuai kebutuhan dan mengikuti struktur resmi.
 
-- AI MUST memastikan pattern terpilih merupakan salah satu dari empat pattern resmi.
-- AI MUST memastikan seluruh Main Flow dan Alternative Flow yang berlaku telah digunakan.
-- AI MUST mempertahankan urutan screen, step, dan decision point.
-- AI MUST memastikan Save, Draft, Preview, Confirmation, dan Exit mengikuti pattern.
-- AI MUST NOT mengubah pattern tanpa Human Approval.
+### 15.3 GEMS Component Compliance
 
-### 14.3 Flow Compliance
+AI MUST memastikan seluruh komponen menggunakan GEMS Design System, termasuk properties, variants, dan states yang tersedia.
 
-- AI MUST menghasilkan UX Flow Diagram lengkap.
-- AI MUST menggunakan data HSD/BRD pada flow.
-- AI MUST memastikan flow sesuai UI Design.
-- AI MUST memastikan seluruh percabangan resmi terwakili.
-- AI MUST NOT menghasilkan flow yang berbeda dari desain.
+### 15.4 Flow Compliance
 
-### 14.4 Design System Compliance
+AI MUST:
 
-- AI MUST menggunakan komponen GEMS resmi.
-- AI MUST menggunakan variant dan state yang tersedia.
-- AI MUST mempertahankan spesifikasi visual.
-- AI MUST memverifikasi komponen terhadap Figma.
-- AI MUST NOT mengarang komponen atau state baru.
+- Menempatkan Flow Diagram di atas UI Screens.
+- Memastikan seluruh screen mengikuti flow.
+- Menampilkan Main Flow dan Alternative Flow.
+- Mempertahankan Decision Point.
+- Memastikan Save, Draft, Preview, Confirmation, dan Exit Flow sesuai pattern.
 
-### 14.5 Human Approval Compliance
+### 15.5 State Completeness
 
-- AI MUST mengidentifikasi setiap kebutuhan yang tidak dapat dipenuhi pattern.
-- AI MUST menjelaskan rekomendasi perubahan.
-- AI MUST meminta Human Approval.
-- AI MUST mempertahankan pattern yang disetujui selama rekomendasi belum disetujui.
-- AI MUST NOT menerapkan perubahan berstatus Pending.
+AI MUST memastikan seluruh state relevan ditangani, termasuk:
 
-### 14.6 Final Validation
+- Validation Error.
+- Loading.
+- Save Error.
+- Network Error.
+- Server Error.
+- Draft Save Error.
+- Unsaved Changes.
 
-Jika terdapat requirement yang belum dapat diverifikasi, AI MUST melaporkan keterbatasannya.
+AI MUST memastikan setiap state memiliki representasi UI dan dapat ditelusuri ke flow.
 
-AI MUST NOT menyatakan desain selesai, sesuai GEMS, atau telah disetujui apabila masih terdapat penyimpangan yang belum memperoleh Human Approval.
+### 15.6 Human Approval Compliance
 
----
+AI MUST:
 
-## 15. Official Figma References
+- Mengidentifikasi ketidaksesuaian.
+- Membuat rekomendasi terpisah.
+- Meminta Human Approval sebelum perubahan.
+- Tidak menerapkan perubahan berstatus Pending.
 
-**Source:** GEMS Design System
+### 15.7 Final Validation Checklist
 
-**Main UX Pattern:**
+AI MUST memastikan output memiliki:
 
-[GEMS Add New Data UX Pattern](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=1161-481)
+1. Pattern Selection.
+2. UX Flow Diagram.
+3. UI Screens.
+4. Main Flow dan Alternative Flow.
+5. Complete UI States.
+6. Flow-to-Screen Mapping.
+7. GEMS Component Compliance.
+8. HSD/BRD Compliance.
+9. Human Approval Status.
 
-**Individual Patterns:**
-
-- [Pattern 01 — Modal / Popup](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3305-14747)
-- [Pattern 02 — New Page](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3310-27399)
-- [Pattern 03 — Multi-step New Page](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3314-34982)
-- [Pattern 04 — Multi-step with Preview](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=3338-41046)
-
-**Components:**
-
-[GEMS Design System — Official Components](https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System)
-
-AI MUST menggunakan referensi resmi tersebut untuk memeriksa flow, screens, komponen, variant, dan state.
+Jika terdapat ketidaksesuaian, AI MUST melaporkannya sebelum menyatakan desain siap diimplementasikan.
 
 ---
 
@@ -831,18 +1372,24 @@ AI MUST menggunakan referensi resmi tersebut untuk memeriksa flow, screens, komp
 AI MUST:
 
 1. Membaca approved HSD/BRD.
-2. Memeriksa keempat Add New Data UX Pattern resmi.
+2. Memeriksa keempat Add New Data UX Pattern resmi GEMS.
 3. Memilih pattern berdasarkan kebutuhan bisnis.
-4. Menggunakan Flow Diagram resmi sebagai acuan.
-5. Menghasilkan UX Flow Diagram lengkap dengan data bisnis.
-6. Menghasilkan UI Screens yang sesuai dengan flow.
-7. Menggunakan seluruh komponen GEMS yang diperlukan.
-8. Mempertahankan struktur dan interaksi pattern.
-9. Menggunakan state dan feedback resmi yang relevan.
-10. Memastikan kesesuaian flow dengan UI.
-11. Meminta Human Approval sebelum perubahan.
-12. Memvalidasi hasil terhadap Figma GEMS.
+4. Menggunakan pattern resmi sebagai acuan flow.
+5. Menggunakan komponen resmi GEMS untuk seluruh UI.
+6. Menghasilkan UX Flow Diagram di bagian atas desain.
+7. Menghasilkan UI Screens di bagian bawah desain.
+8. Menggunakan field dan business rules dari HSD/BRD.
+9. Menghasilkan seluruh UI States yang relevan.
+10. Menangani Success, Error, Loading, dan Failure.
+11. Menangani Draft dan Preview sesuai pattern.
+12. Menghubungkan seluruh screens dan states dengan flow.
+13. Mempertahankan struktur pattern resmi.
+14. Merekomendasikan perubahan jika pattern tidak sesuai.
+15. Meminta Human Approval sebelum menerapkan perubahan.
+16. Memvalidasi hasil terhadap HSD/BRD dan GEMS.
 
-**Final Rule:**
+### Final Enforcement Rule
 
-> AI MUST menggunakan salah satu dari empat Add New Data UX Pattern resmi GEMS berdasarkan kebutuhan HSD/BRD. Setiap output desain MUST menyertakan UX Flow Diagram lengkap dan UI Screens yang konsisten. Seluruh komponen MUST berasal dari GEMS Design System. AI MUST NOT menambah, menghapus, menggabungkan, atau mengubah struktur dan interaksi pattern tanpa explicit Human Approval.
+> AI MUST select the most appropriate official GEMS Add New Data UX Pattern based on approved HSD/BRD. Every design MUST include a complete UX Flow Diagram positioned above the corresponding UI Screens, with all applicable UI States, including success, error, loading, validation, draft, preview, and unsaved changes. All UI components MUST originate from the official GEMS Design System. If no existing pattern fully supports the business requirements, AI MAY recommend a modified UX Flow but MUST obtain explicit Human Approval before implementing any changes.
+
+**GEMS UX Pattern menentukan alur. GEMS Design System menentukan komponen. HSD/BRD menentukan kebutuhan bisnis. Human Approval menentukan apakah perubahan diperbolehkan.**
