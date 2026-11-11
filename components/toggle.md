@@ -1,14 +1,5 @@
 # GEMS Design System — Toggle Guidelines
 
-**Document:** `components/toggle.md`  
-**Version:** 1.3 — Final  
-**Component:** Toggle  
-**Platform:** GEMS Web Application  
-**Primary Design Source:** GEMS Design System (Figma)  
-**Business Requirement Source:** HSD / BRD
-
----
-
 ## 1. Purpose & Core Principles
 
 Toggle merupakan komponen interaktif berbentuk switch yang digunakan untuk mengaktifkan atau menonaktifkan suatu pengaturan, fitur, preferensi, atau kondisi data yang memiliki dua nilai (*binary state*).
