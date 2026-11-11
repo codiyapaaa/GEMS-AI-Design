@@ -1,6 +1,7 @@
 # Avatar — GEMS AI Design Guidelines
 
-## 1. Overview
+## 1. Purpose & Core Principles
+
 
 Avatar merupakan komponen identitas visual yang digunakan untuk merepresentasikan individu melalui foto profil, inisial nama, atau placeholder.
 
