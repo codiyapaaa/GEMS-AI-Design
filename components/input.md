@@ -1,10 +1,5 @@
 # GEMS Design System — Input Guidelines
 
-**Document:** `components/input.md`  
-**Version:** 1.0 — Final  
-**Scope:** Input Field, Textarea Input Field, Input Dropdown, Date & Time Picker  
-**Platform:** GEMS Web Application
-
 ## 1. Purpose & Source of Truth
 
 Dokumen ini adalah **satu sumber aturan untuk seluruh keluarga komponen input GEMS**. AI menggunakan HSD/BRD untuk menentukan data, aturan bisnis, hak akses, format, dan alur; menggunakan GEMS Figma Design System untuk memilih komponen, variant, state, dan visual. Jika keduanya belum menentukan perilaku, AI MUST meminta Human Approval, bukan menciptakan aturan sendiri.
