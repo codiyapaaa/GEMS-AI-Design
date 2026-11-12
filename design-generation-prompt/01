@@ -1,83 +1,33 @@
-Buat desain UI/UX secara langsung di Figma menggunakan **Claude AI + Figma MCP** berdasarkan use case, dokumen HSD/BRD, User Flow, GEMS Design System, Component Guide, dan UX Pattern Guide.
+# GEMS AI — UI/UX Generation
 
-## 1. Design Input & References
+Buat desain UI/UX langsung di Figma menggunakan **Claude AI + Figma MCP** berdasarkan task dan referensi berikut.
 
-**Project:** `[NAMA PROJECT]`
+## 1. Input & References
 
-**Module / Feature:** `[NAMA MODUL ATAU FITUR]`
+- **Project:** [NAMA PROJECT]
+- **Task:** [Contoh: Buat desain Pengajuan Pesanan Makanan]
+- **Platform:** [WEB / MOBILE]
+- **HSD/BRD/User Flow:** [LINK / DOKUMEN]
+- **Target Figma:** [LINK FILE FIGMA]
 
-**Use Case & Description:** `[MASUKKAN USE CASE BESERTA DESKRIPSINYA]`
-
-**Platform:** `[WEB / MOBILE / RESPONSIVE]`
-
-**HSD / BRD:** `[LAMPIRKAN FILE ATAU LINK DOKUMEN REQUIREMENT]`
-
-**Existing User Flow (Optional):** `[LINK FIGMA / GAMBAR / DIAGRAM / DOKUMEN FLOW]`
-
-**Target Figma:** `[LINK FILE FIGMA TUJUAN]`
-
-**Mandatory Design References:**
-
+**Design References:**
 - **GEMS Design System:** https://www.figma.com/design/vaAJgd6yZ7l9TrIuF04671/GEMS-Design-System?node-id=1161-481
 - **Component Guide:** https://github.com/codiyapaaa/GEMS-AI-Design/tree/main/components
 - **UX Pattern Guide:** https://github.com/codiyapaaa/GEMS-AI-Design/blob/main/ux-pattern.md
 - **Main Repository:** https://github.com/codiyapaaa/GEMS-AI-Design
 
-## 2. Execution Instructions
+## 2. Instructions
 
-1. **Analyze Requirements:** Baca HSD/BRD dan seluruh use case untuk memahami business flow, role, permission, fitur, field, data, validations, actions, dan system responses.
+1. **Analyze Requirements:** Pahami task, HSD/BRD, dan User Flow untuk mengidentifikasi kebutuhan fitur, role, proses bisnis, serta interaksi.
+2. **Apply UX Patterns:** Identifikasi pattern yang relevan secara otomatis (Add Data, Edit Data, Delete Data, View Detail, dan lainnya). Terapkan seluruh flow, actions, screens, dan states sesuai UX Pattern Guide.
+3. **Apply GEMS Components:** Akses GEMS Design System melalui Figma MCP. Gunakan komponen asli, variants, styles, dan behavior sesuai Component Guide.
+4. **Generate Design:** Buat New Page pada Target Figma. Susun setiap flow mengikuti contoh UX Pattern Guide, dengan **User Flow di atas dan UI Screens beserta interaction states di bawahnya**.
+5. **Validate:** Pastikan desain sesuai requirement dan seluruh guideline. Jangan mengubah atau menambahkan flow maupun aturan desain tanpa Human Approval.
 
-2. **Review User Flow:** Jika Existing User Flow tersedia, gunakan sebagai acuan alur desain dan validasi kesesuaiannya dengan HSD/BRD. Jika tidak tersedia, buat User Flow berdasarkan requirement dan UX Pattern Guide. Jangan mengubah flow yang telah disetujui tanpa validasi.
+## 3. Expected Output
 
-3. **Read Design Guidelines:** Pelajari Component Guide dan UX Pattern Guide. Akses GEMS Design System melalui Figma MCP untuk mengidentifikasi komponen, variants, properties, styles, dan variables yang relevan.
+Hasilkan **desain UI/UX lengkap langsung di Figma**, bukan hanya deskripsi atau rekomendasi, dengan struktur visual sesuai UX Pattern Guide.
 
-4. **Prepare Figma:** Akses Target Figma dan buat **New Page** bernama `[Module / Feature] - AI Design`. Jangan mengubah atau menimpa desain existing tanpa instruksi.
+Berikan link Figma hasil desain. Jika terdapat keterbatasan MCP atau kebutuhan yang belum tercakup dalam guideline, jelaskan kendala dan rekomendasi solusinya.
 
-5. **Generate User Flow & UI Screens:** Buat visual User Flow dan seluruh UI Screens berdasarkan requirement serta flow yang tersedia. Pastikan setiap screen mengikuti urutan proses dan seluruh role yang relevan.
-
-6. **Apply GEMS Components:** Gunakan komponen asli GEMS beserta variants, states, typography, colors, spacing, dan layout sesuai Component Guide. Jangan membuat custom component jika komponen yang sesuai sudah tersedia.
-
-7. **Complete Interactions:** Lengkapi modal, validation, notification, empty state, loading, error, success, disabled, dan interaction states lain yang relevan dengan use case.
-
-8. **Organize Design:** Susun **User Flow di bagian atas dan UI Screens di bagian bawah**, mengikuti struktur visual UX Pattern Guide. Tempatkan interaction states di dekat screen terkait, dengan connector dan penamaan yang konsisten.
-
-9. **Validate Design:** Pastikan seluruh requirement HSD/BRD terpenuhi, User Flow sesuai proses bisnis, dan desain mengikuti UX Pattern Guide serta GEMS Design System. Perbaiki ketidaksesuaian berdasarkan referensi yang tersedia.
-
-## 3. Mandatory Rules
-
-- MUST menggunakan HSD/BRD sebagai sumber utama business requirements.
-- MUST menggunakan Existing User Flow jika tersedia dan telah tervalidasi.
-- MUST mengikuti Component Guide dan UX Pattern Guide.
-- MUST menggunakan GEMS Design System sebagai sumber komponen dan styling.
-- MUST membuat User Flow dan UI Screens dalam Page Figma yang sama.
-- MUST NOT mengubah business flow tanpa persetujuan pihak berwenang.
-- MUST NOT membuat custom component jika komponen sudah tersedia di GEMS.
-- MUST NOT mengubah atau menimpa desain existing tanpa instruksi.
-- Jika terdapat konflik antara User Flow dan HSD/BRD, tandai untuk validasi dan jangan memilih perubahan proses bisnis secara sepihak.
-- Jika kemampuan Figma MCP terbatas, sampaikan kendalanya tanpa mengklaim pekerjaan yang belum dilakukan.
-
-## 4. Expected Output
-
-Hasil akhir MUST berupa **desain UI/UX langsung pada Page Figma tujuan**, dengan struktur:
-
-**TOP — USER FLOW**
-
-Visualisasi alur lengkap berdasarkan Existing User Flow (jika tersedia) atau hasil analisis HSD/BRD.
-
-**BOTTOM — UI SCREENS**
-
-Seluruh UI Screens berdasarkan urutan User Flow, menggunakan komponen GEMS sesuai Component Guide.
-
-**RELATED INTERACTION STATES**
-
-Modal, validation, notification, feedback, dan states relevan lainnya ditempatkan di dekat screen terkait.
-
-Pastikan desain tersusun rapi, konsisten, dan mudah ditelusuri untuk review UI/UX.
-
-Setelah selesai, berikan link Figma hasil desain.
-
----
-
-**FINAL INSTRUCTION**
-
-Execute the provided use cases directly in Figma using Figma MCP. Use HSD/BRD as the primary business requirements and the approved User Flow as the interaction reference when available. Generate a complete visual User Flow above the corresponding UI Screens. Strictly follow GEMS Design System, Component Guide, and UX Pattern Guide. Do not modify approved business flows without authorization.
+**Setiap rekomendasi yang mengubah atau menambahkan user flow, UX Pattern, atau aturan desain wajib mendapatkan Human Approval sebelum diimplementasikan.**
